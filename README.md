@@ -91,3 +91,4 @@ Backend
 main.py: FastAPI server with endpoints for:
 Basic LLM queries (/llm/query).
 Pipeline parsing (/pipelines/parse).
+![image](https://github.com/user-attachments/assets/b8057a9c-49ce-47fd-a320-5a853f5dc55c)
