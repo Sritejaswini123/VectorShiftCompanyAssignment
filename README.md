@@ -1,92 +1,50 @@
 # VectorShift Frontend Technical Assessment
 
-This project implements the frontend and backend requirements for the VectorShift technical assessment. It is built using **React.js** for the frontend and **FastAPI** for the backend.
+This project is a solution to the VectorShift Frontend Technical Assessment, showcasing the implementation of a pipeline-based user interface with React.js for the frontend and FastAPI for the backend. The application allows users to create and manipulate nodes and edges, style components, and integrate frontend pipelines with backend logic
+###How It Works
+###Project Overview
+The project is divided into two main components:
+Frontend: Built using React.js, it provides a user interface to create, style, and interact with different types of nodes. Users can define edges between nodes and create directed acyclic graphs (DAG).
+Backend: Implemented using FastAPI, it processes data sent from the frontend to determine the number of nodes, edges, and whether the graph is a DAG.
+###Frontend
+A "Submit" button allows users to send the pipeline (nodes and edges) to the backend for processing.
+A modal popup displays the backend response, including:
+Number of nodes in the pipeline.
+Number of edges in the pipeline.
+Whether the pipeline forms a Directed Acyclic Graph (DAG).
 
-## Overview
+###Backend Features
+Pipeline Analysis:
+The backend receives nodes and edges from the frontend via the /pipelines/parse endpoint.
+Calculates the total number of nodes and edges.
+Determines if the pipeline forms a Directed Acyclic Graph (DAG) using a topological sorting algorithm.
+LLM Integration:
+The /llm/query endpoint interacts with the Hugging Face GPT-2 model.
+Generates responses based on user input provided in the LLM Node.
+CORS Configuration:
+The backend is configured to handle CORS requests from the frontend.
 
-The project is designed to showcase:
-1. Node abstraction for reusability and maintainability.
-2. Styling for a clean and unified user interface.
-3. Dynamic logic for nodes, including text input functionality.
-4. Backend integration to handle pipeline data and validate Directed Acyclic Graph (DAG) properties.
+### Workflow
+Node Creation:
 
-The repository consists of two main folders:
-- `frontend`: Contains the React.js application.
-- `backend`: Contains the FastAPI application.
+Users drag and drop nodes into the pipeline workspace.
+Nodes can be connected to each other by defining edges.
+Text Input in Text Node:
 
----
+Users input text into a Text Node.
+Dynamic handles are generated for variables defined in {{variableName}} format.
+Submit Pipeline:
 
-## Features
+Users click the "Submit" button to send the pipeline data to the backend.
+The backend processes the data and returns a response.
+Response Display:
 
-### Part 1: Node Abstraction
-The project implements an abstraction for reusable nodes. The base abstraction allows creating nodes with varying functionalities and styles easily.
-
-- **Predefined Nodes**: 
-  - Input Node
-  - LLM Node
-  - Output Node
-  - Text Node
-
-- **Additional Nodes Created**:
-  - **Checkbox Node**: Allows toggling values.
-  - **File Upload Node**: Enables file upload functionality.
-  - **Multiselect Node**: Allows selecting multiple options.
-  - **Date Node**: For date input.
-  - **Notes Node**: Used for freeform notes.
-
-Each node demonstrates the flexibility of the abstraction layer, including dynamic connections, input/output handles, and individual functionalities.
-
-### Part 2: Styling
-The nodes and other components are styled for a visually appealing interface using:
-- Custom gradients for buttons and backgrounds.
-- Shadows and rounded edges for a polished look.
-- Dynamic resizing for input fields (e.g., text areas).
-
-### Part 3: Text Node Logic
-1. **Dynamic Resizing**:
-   - The Text Node dynamically adjusts its size (width and height) based on the text input, ensuring better visibility.
-
-2. **Dynamic Handles**:
-   - Supports variables defined in double curly brackets (`{{variable_name}}`).
-   - Automatically adds input handles for these variables on the left side of the node.
-
-### Part 4: Backend Integration
-The frontend connects to the FastAPI backend to:
-1. Submit the pipeline data (nodes and edges).
-2. Receive the number of nodes, edges, and whether the pipeline forms a Directed Acyclic Graph (DAG).
-3. Display results in a modal notification.
-
-The backend includes:
-- Endpoint for pipeline parsing (`/pipelines/parse`), which calculates:
-  - Total nodes.
-  - Total edges.
-  - DAG validation logic.
-
----
-
-## Installation and Usage
-
-### Prerequisites
-## The Frontend setup is : 
-cd frontend
-npm install
-npm start
-
-## The Backend setup is : 
-cd backend
-uvicorn main:app --reload
-The alternative command is :  python -m uvicorn main:app --reload
+A modal popup displays the backend response:
+Total number of nodes.
+Total number of edges.
+Whether the pipeline is a DAG.
 
 
-### File Structure
-Frontend
-src/nodes: Contains node components.
-src/store: Manages the application state using Zustand.
-src/submit.js: Handles the submission logic and connects to the backend.
-Backend
-main.py: FastAPI server with endpoints for:
-Basic LLM queries (/llm/query).
-Pipeline parsing (/pipelines/parse).
 ![image](https://github.com/user-attachments/assets/b8057a9c-49ce-47fd-a320-5a853f5dc55c)
 ![Screenshot 2025-01-05 083105](https://github.com/user-attachments/assets/16b2f003-2d1f-4043-b4c7-6930c1774f80)
 
