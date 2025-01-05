@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# VectorShift Frontend Technical Assessment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project implements the frontend and backend requirements for the VectorShift technical assessment. It is built using **React.js** for the frontend and **FastAPI** for the backend.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+The project is designed to showcase:
 
-### `npm start`
+1. Node abstraction for reusability and maintainability.
+2. Styling for a clean and unified user interface.
+3. Dynamic logic for nodes, including text input functionality.
+4. Backend integration to handle pipeline data and validate Directed Acyclic Graph (DAG) properties.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The repository consists of two main folders:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- `frontend`: Contains the React.js application.
+- `backend`: Contains the FastAPI application.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+### Part 1: Node Abstraction
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The project implements an abstraction for reusable nodes. The base abstraction allows creating nodes with varying functionalities and styles easily.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Predefined Nodes**:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - Input Node
+  - LLM Node
+  - Output Node
+  - Text Node
 
-### `npm run eject`
+- **Additional Nodes Created**:
+  - **Checkbox Node**: Allows toggling values.
+  - **File Upload Node**: Enables file upload functionality.
+  - **Multiselect Node**: Allows selecting multiple options.
+  - **Date Node**: For date input.
+  - **Notes Node**: Used for freeform notes.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Each node demonstrates the flexibility of the abstraction layer, including dynamic connections, input/output handles, and individual functionalities.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Part 2: Styling
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The nodes and other components are styled for a visually appealing interface using:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Custom gradients for buttons and backgrounds.
+- Shadows and rounded edges for a polished look.
+- Dynamic resizing for input fields (e.g., text areas).
 
-## Learn More
+### Part 3: Text Node Logic
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Dynamic Resizing**:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   - The Text Node dynamically adjusts its size (width and height) based on the text input, ensuring better visibility.
 
-### Code Splitting
+2. **Dynamic Handles**:
+   - Supports variables defined in double curly brackets (`{{variable_name}}`).
+   - Automatically adds input handles for these variables on the left side of the node.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Part 4: Backend Integration
 
-### Analyzing the Bundle Size
+The frontend connects to the FastAPI backend to:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Submit the pipeline data (nodes and edges).
+2. Receive the number of nodes, edges, and whether the pipeline forms a Directed Acyclic Graph (DAG).
+3. Display results in a modal notification.
 
-### Making a Progressive Web App
+The backend includes:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Endpoint for pipeline parsing (`/pipelines/parse`), which calculates:
+  - Total nodes.
+  - Total edges.
+  - DAG validation logic.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Installation and Usage
 
-### Deployment
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Node.js** (v14+)
+- **Python** (v3.8+)
+- **FastAPI** and required Python libraries (`pip install fastapi uvicorn pydantic`)
 
-### `npm run build` fails to minify
+### Clone the Repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+git clone https://github.com/Sritejaswini123/VectorShift.git
+cd VectorShift
+```
