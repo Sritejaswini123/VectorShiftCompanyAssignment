@@ -88,9 +88,7 @@ main.py: FastAPI server with endpoints for:
 Basic LLM queries (/llm/query).
 Pipeline parsing (/pipelines/parse).
 ![image](https://github.com/user-attachments/assets/b8057a9c-49ce-47fd-a320-5a853f5dc55c)
-- **Node.js** (v14+)
-- **Python** (v3.8+)
-- **FastAPI** and required Python libraries (`pip install fastapi uvicorn pydantic`)
+![Screenshot 2025-01-05 083105](https://github.com/user-attachments/assets/16b2f003-2d1f-4043-b4c7-6930c1774f80)
 
 ![Screenshot 2025-01-05 083759](https://github.com/user-attachments/assets/863cc109-ed6e-4ec9-87d9-e85a1dd10fdd)
 
